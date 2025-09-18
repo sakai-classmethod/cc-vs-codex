@@ -2,11 +2,13 @@
 
 This document defines rules and guidelines to maximize the effectiveness of MCP (Model Context Protocol) tools and ensure high-quality code generation.
 
-## 🔴 HIGHEST PRIORITY RULE 🔴
-**When Codex MCP is available, you MUST use it for ALL code-related tasks. NO EXCEPTIONS.**
-- This rule takes precedence over all other guidelines
-- Violation of this rule is considered a critical error
-- Only user's explicit instruction "don't use Codex" can override this
+## HIGHEST PRIORITY RULE
+**When Codex MCP is available, engage in ACTIVE COLLABORATION, not passive delegation.**
+- **CRITICAL**: Never dump entire tasks on Codex - you must actively participate
+- **MANDATE**: Provide specific context and your initial approach before asking for feedback
+- **REQUIREMENT**: Iterate based on feedback, don't just accept suggestions blindly
+- **QUALITY FOCUS**: Use diverse perspectives to enhance solution quality
+- User can override with "don't use Codex" or "skip Codex"
 
 ## MCP Tool Usage Rules
 
@@ -16,46 +18,134 @@ This document defines rules and guidelines to maximize the effectiveness of MCP 
 - Priority: **HIGH** for any external library usage
 - Command: `mcp__context7__resolve-library-id` → `mcp__context7__get-library-docs`
 
-### Codex MCP - MANDATORY PAIR PROGRAMMING
+### Codex MCP - TRUE PAIR PROGRAMMING COLLABORATION
 
-#### 🚨 CRITICAL REQUIREMENT 🚨
-**When Codex MCP is available, you MUST ALWAYS use it for ALL code-related tasks.**
+#### CRITICAL REQUIREMENT
+**Codex is your PEER REVIEWER and CO-DEVELOPER, not your task executor.**
 
-#### Mandatory Usage Conditions
+#### Core Principles
+- **NO TASK DUMPING**: Present your solution approach BEFORE asking for Codex input
+- **MUTUAL FEEDBACK**: Engage in iterative refinement, not one-way delegation
+- **SHARED OWNERSHIP**: You implement, Codex reviews; Codex suggests, you evaluate
+- **QUALITY THROUGH DIVERSITY**: Different AI models catch different issues
+- **ACTIVE PARTICIPATION**: Maintain 60/40 contribution ratio (you/Codex)
+
+#### Collaboration Guidelines
 - **REQUIREMENT**: Check Codex MCP availability at conversation start
-- **MANDATORY**: Use Codex for ANY task involving:
-  - Writing new code (even single functions)
-  - Modifying existing code
-  - Code review or analysis
-  - Architecture decisions
-  - Bug fixes
-  - Refactoring
-  - Test implementation
+- **COLLABORATIVE APPROACH** for:
+  - Complex architectural decisions (discuss trade-offs together)
+  - Critical code implementations (iterative refinement)
+  - Security-sensitive changes (cross-validation)
+  - Performance optimizations (multiple perspectives)
+  - Test strategy design (comprehensive coverage)
 
-#### Enforcement Rules
-1. **BEFORE ANY CODE CHANGES**: Start Codex session FIRST
-2. **NO EXCEPTIONS**: Even trivial changes require Codex collaboration
-3. **VIOLATION PREVENTION**: If you attempt to edit code without Codex, STOP and start Codex session immediately
-4. **USER OVERRIDE ONLY**: Only skip Codex if user explicitly says "don't use Codex" or "skip Codex"
+#### Division of Responsibilities
+1. **Claude Code (You) - Primary Developer**:
+   - ALWAYS provide initial implementation or approach
+   - Execute all file operations and tool usage
+   - Explain your reasoning and design choices
+   - Evaluate and integrate feedback critically
+   - Make final implementation decisions
 
-#### Mandatory Workflow
-1. **IMMEDIATE ACTION**: Upon any code-related request, start Codex session
-2. **CONTEXT SHARING**: Provide full context and requirements to Codex
-3. **COLLABORATIVE IMPLEMENTATION**: Work with Codex throughout entire task
-4. **REVIEW TOGETHER**: Complete task review with Codex before finalizing
+2. **Codex - Peer Reviewer & Advisor**:
+   - Review your proposed solutions
+   - Identify blind spots and edge cases
+   - Suggest alternative patterns when beneficial
+   - Validate security, performance, and best practices
+   - Provide different perspective on problem-solving
+
+#### Mandatory Collaborative Workflow
+1. **PREPARATION** (Your responsibility):
+   - Analyze the problem independently first
+   - Draft initial approach or pseudocode
+   - Identify potential challenges
+
+2. **COLLABORATIVE REFINEMENT**:
+   - Present YOUR solution to Codex with rationale
+   - Request specific feedback (not "implement this for me")
+   - Discuss trade-offs of different approaches
+   - Iterate based on constructive criticism
+
+3. **IMPLEMENTATION** (Your lead):
+   - You write the actual code
+   - Request targeted reviews on specific aspects
+   - Address identified issues proactively
+
+4. **VALIDATION**:
+   - Cross-check edge cases together
+   - Verify security and performance implications
+   - Ensure code meets all requirements
 
 #### Commands
 - Start new session: `mcp__codex__codex`
 - Continue conversation: `mcp__codex__codex-reply`
 - Approval policies: Configure based on trust level (untrusted/on-failure/on-request/never)
 
-#### Benefits of Mandatory Pair Programming
-- Real-time code review and quality assurance
-- Reduced errors through collaborative thinking
-- Better architecture decisions
-- Knowledge sharing and best practices enforcement
+#### When to Use Codex Collaboration
+- **MANDATORY COLLABORATION**:
+  - Security-critical implementations
+  - Complex architectural decisions
+  - Performance-critical algorithms
+  - API design and data models
 
-**⚠️ REMINDER: Failing to use Codex MCP when available is a violation of project guidelines**
+- **RECOMMENDED COLLABORATION**:
+  - New feature implementation (> 50 lines)
+  - Significant refactoring
+  - Complex bug fixes
+  - Test strategy design
+
+- **OPTIONAL/SKIP CODEX**:
+  - Simple bug fixes (< 20 lines)
+  - Documentation updates
+  - Configuration changes
+  - Formatting and typos
+  - Straightforward CRUD operations
+
+#### Effective Collaboration Patterns
+
+**GOOD - Active Collaboration**:
+```
+You: "I plan to implement user authentication using JWT tokens stored in httpOnly cookies. Here's my approach: [details]. What security considerations am I missing?"
+Codex: "Consider CSRF protection and token rotation strategy"
+You: "Good points. I'll add CSRF tokens and implement refresh token rotation with 15-min access tokens"
+```
+
+**BAD - Task Dumping**:
+```
+You: "Implement user authentication for me"
+Codex: [provides full implementation]
+You: [copies without understanding]
+```
+
+**GOOD - Iterative Refinement**:
+```
+You: "Here's my implementation of the cache layer: [code]. I'm concerned about memory leaks"
+Codex: "The WeakMap approach could help, also consider TTL cleanup"
+You: "I'll refactor using WeakMap and add a background cleanup task"
+```
+
+**BAD - Blind Acceptance**:
+```
+You: "How should I do this?"
+Codex: [provides suggestion]
+You: "OK" [implements without evaluation]
+```
+
+#### Benefits of True Pair Programming
+- Diverse perspectives lead to robust solutions
+- Real-time error prevention through cross-validation
+- Knowledge exchange between different AI models
+- Higher code quality through iterative refinement
+- Reduced blind spots in implementation
+
+#### Anti-Patterns to Avoid
+1. **Task Dumping**: "Write this entire feature for me"
+2. **Blind Delegation**: Accepting suggestions without understanding
+3. **Passive Participation**: Not providing initial approach
+4. **One-Way Communication**: Not iterating on feedback
+5. **Over-Reliance**: Using Codex for trivial tasks
+
+**REMINDER: You are the primary developer. Codex enhances quality through review and alternative perspectives, not by doing the work for you.**
 
 ### Sequential-thinking MCP
 - Use for complex problem decomposition and step-by-step analysis
@@ -101,10 +191,11 @@ This document defines rules and guidelines to maximize the effectiveness of MCP 
 ## Code Quality Rules
 
 ### Before Any Changes
-- **FIRST PRIORITY**: Start Codex MCP session if available (MANDATORY)
-- **MUST** read existing code with `Read` tool first
-- Understand conventions from neighboring files
-- Check `package.json`/`requirements.txt` for available dependencies
+- **FIRST**: Read and understand existing code with `Read` tool
+- **SECOND**: Formulate your approach independently
+- **THIRD**: Start Codex session for complex tasks with YOUR initial solution
+- **ALWAYS**: Check conventions from neighboring files
+- **VERIFY**: Available dependencies in `package.json`/`requirements.txt`
 
 ### Before Committing
 - **MUST** run lint command (e.g., `npm run lint`, `ruff`, `eslint`)
