@@ -16,6 +16,27 @@ This document defines rules and guidelines to maximize the effectiveness of MCP 
 - Approval policies: Configure based on trust level (untrusted/on-failure/on-request/never)
 - Command: `mcp__codex__codex` for new sessions, `mcp__codex__codex-reply` for continuations
 
+#### Pair Programming with Codex MCP
+**When Codex MCP is enabled:**
+- **MUST** use Codex MCP for collaborative pair programming sessions
+- Treat Codex as a pair programming partner for complex implementations
+- Share context and decision-making process through Codex conversations
+- Use Codex for:
+  - Architecture discussions and design reviews
+  - Complex refactoring with real-time feedback
+  - Multi-step implementations requiring iterative refinement
+  - Code review and optimization suggestions
+- Workflow:
+  1. Start Codex session with clear problem statement
+  2. Iterate with Codex for solution design
+  3. Implement with Codex guidance
+  4. Review and refine together
+
+**When Codex MCP is disabled:**
+- Proceed with standard implementation workflow
+- Use other available MCP tools as appropriate
+- No requirement to use Codex MCP
+
 ### Sequential-thinking MCP
 - Use for complex problem decomposition and step-by-step analysis
 - Ideal for: Debugging complex issues, algorithm design, system architecture planning
