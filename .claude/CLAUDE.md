@@ -2,6 +2,12 @@
 
 This document defines rules and guidelines to maximize the effectiveness of MCP (Model Context Protocol) tools and ensure high-quality code generation.
 
+## 🔴 HIGHEST PRIORITY RULE 🔴
+**When Codex MCP is available, you MUST use it for ALL code-related tasks. NO EXCEPTIONS.**
+- This rule takes precedence over all other guidelines
+- Violation of this rule is considered a critical error
+- Only user's explicit instruction "don't use Codex" can override this
+
 ## MCP Tool Usage Rules
 
 ### Context7 MCP
@@ -10,32 +16,46 @@ This document defines rules and guidelines to maximize the effectiveness of MCP 
 - Priority: **HIGH** for any external library usage
 - Command: `mcp__context7__resolve-library-id` → `mcp__context7__get-library-docs`
 
-### Codex MCP
-- Use for complex, multi-file code generation tasks
-- Ideal for: Refactoring, new feature implementation, architecture design
+### Codex MCP - MANDATORY PAIR PROGRAMMING
+
+#### 🚨 CRITICAL REQUIREMENT 🚨
+**When Codex MCP is available, you MUST ALWAYS use it for ALL code-related tasks.**
+
+#### Mandatory Usage Conditions
+- **REQUIREMENT**: Check Codex MCP availability at conversation start
+- **MANDATORY**: Use Codex for ANY task involving:
+  - Writing new code (even single functions)
+  - Modifying existing code
+  - Code review or analysis
+  - Architecture decisions
+  - Bug fixes
+  - Refactoring
+  - Test implementation
+
+#### Enforcement Rules
+1. **BEFORE ANY CODE CHANGES**: Start Codex session FIRST
+2. **NO EXCEPTIONS**: Even trivial changes require Codex collaboration
+3. **VIOLATION PREVENTION**: If you attempt to edit code without Codex, STOP and start Codex session immediately
+4. **USER OVERRIDE ONLY**: Only skip Codex if user explicitly says "don't use Codex" or "skip Codex"
+
+#### Mandatory Workflow
+1. **IMMEDIATE ACTION**: Upon any code-related request, start Codex session
+2. **CONTEXT SHARING**: Provide full context and requirements to Codex
+3. **COLLABORATIVE IMPLEMENTATION**: Work with Codex throughout entire task
+4. **REVIEW TOGETHER**: Complete task review with Codex before finalizing
+
+#### Commands
+- Start new session: `mcp__codex__codex`
+- Continue conversation: `mcp__codex__codex-reply`
 - Approval policies: Configure based on trust level (untrusted/on-failure/on-request/never)
-- Command: `mcp__codex__codex` for new sessions, `mcp__codex__codex-reply` for continuations
 
-#### Pair Programming with Codex MCP
-**When Codex MCP is enabled:**
-- **MUST** use Codex MCP for collaborative pair programming sessions
-- Treat Codex as a pair programming partner for complex implementations
-- Share context and decision-making process through Codex conversations
-- Use Codex for:
-  - Architecture discussions and design reviews
-  - Complex refactoring with real-time feedback
-  - Multi-step implementations requiring iterative refinement
-  - Code review and optimization suggestions
-- Workflow:
-  1. Start Codex session with clear problem statement
-  2. Iterate with Codex for solution design
-  3. Implement with Codex guidance
-  4. Review and refine together
+#### Benefits of Mandatory Pair Programming
+- Real-time code review and quality assurance
+- Reduced errors through collaborative thinking
+- Better architecture decisions
+- Knowledge sharing and best practices enforcement
 
-**When Codex MCP is disabled:**
-- Proceed with standard implementation workflow
-- Use other available MCP tools as appropriate
-- No requirement to use Codex MCP
+**⚠️ REMINDER: Failing to use Codex MCP when available is a violation of project guidelines**
 
 ### Sequential-thinking MCP
 - Use for complex problem decomposition and step-by-step analysis
@@ -81,6 +101,7 @@ This document defines rules and guidelines to maximize the effectiveness of MCP 
 ## Code Quality Rules
 
 ### Before Any Changes
+- **FIRST PRIORITY**: Start Codex MCP session if available (MANDATORY)
 - **MUST** read existing code with `Read` tool first
 - Understand conventions from neighboring files
 - Check `package.json`/`requirements.txt` for available dependencies
